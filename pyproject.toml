@@ -1,0 +1,54 @@
+[build-system]
+requires = ["maturin (>=1.15.0,<1.16.0)"]
+build-backend = "maturin"
+
+[project]
+name = "netstrings-py"
+version = "0.0.0"
+description = "A high-performance netstrings encoding and decoding library for Python"
+authors = [{ name = "Andrew Malchuk", email = "andrew.malchuk@yandex.ru" }]
+readme = "README.md"
+license = "MIT"
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Intended Audience :: Developers",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+  "Programming Language :: Rust",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Typing :: Typed",
+]
+requires-python = ">=3.12.0"
+
+[dependency-groups]
+dev = [
+  { include-group = "build" },
+  { include-group = "linting" },
+]
+build = [ # must be kept in sync with `build-system.requires`
+  "maturin (>=1.15.0,<1.16.0)",
+]
+linting = [
+  "mypy[faster-cache] (>=2.3.0,<2.4.0)",
+  "ruff (>=0.16.0,<0.17.0)",
+]
+
+[tool.maturin]
+locked = true
+python-source = "python"
+module-name = "netstrings._netstrings"
+
+[tool.mypy]
+show_column_numbers = true
+strict = true
+
+[tool.ruff]
+line-length = 140
+src = ["python"]
+
+[tool.uv]
+cache-keys = [{ file = "pyproject.toml" }, { file = "Cargo.toml" }, { git = { commit = true } }]
+no-build-isolation = true
+package = false

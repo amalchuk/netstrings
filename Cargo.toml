@@ -1,0 +1,15 @@
+[package]
+name = "netstrings-py"
+publish = false
+edition = "2024"
+rust-version = "1.91.0"
+
+[lib]
+name = "_netstrings"
+crate-type = ["cdylib"]
+
+[dependencies]
+pyo3 = { version = "0.29.3", features = ["abi3-py312"] }
+
+[dev-dependencies]
+rand = "0.10.3"
